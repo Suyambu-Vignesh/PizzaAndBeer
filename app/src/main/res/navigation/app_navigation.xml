@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/proximity_business_list_fragment"
+    android:id="@+id/app_navigation">
+
+    <fragment
+        android:id="@+id/proximity_business_list_fragment"
+        android:name="com.app.pizzaandbeer.ui.fragment.ProximityBusinessesListFragment" />
+
+</navigation>

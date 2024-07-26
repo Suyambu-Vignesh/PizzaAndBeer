@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PizzaAndBeer</string>
+
+    <string name="str_loading_default_text">Fetching ...</string>
+
+    <string name="str_review_rating">%1$s (%1$s)</string>
+
+    <string name="str_btn_retry">Retry</string>
+    <string name="str_btn_location_permission">Enable Location Permission</string>
+
+    <string name="str_default_error_title">Error !!!</string>
+    <string name="str_default_error_detail">There is some issue, no worries we are on top of the issue.</string>
+    <string name="str_no_result_error_title">No Results !!!</string>
+    <string name="str_no_result_error_detail">Looks like there is no pizza or bear around you.</string>
+    <string name="str_no_network_error_title">Network Issue !!!</string>
+    <string name="str_no_network_error_detail">Looks like there is some issue with your network. Please check and give a Retry.</string>
+    <string name="str_location_error_title">Need Location Information !!!</string>
+    <string name="str_location_error_detail">We need your most valuable location detail to find pizza and beer around you.</string>
+</resources>
