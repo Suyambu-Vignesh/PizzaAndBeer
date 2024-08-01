@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
@@ -21,14 +19,14 @@ import com.app.pizzaandbeer.ui.viewmodel.ProximityBusinessesViewModel
 fun ProximityBusinessListView(
     modifier: Modifier = Modifier,
     viewModel: ProximityBusinessesViewModel,
+    onItemClick: () -> Unit,
     askLocationPermission: () -> Unit,
 ) {
     val proximityBusinessesPagingItems: LazyPagingItems<ProximityServicePagingState> =
         viewModel.proximityServicePagingDataFlow.collectAsLazyPagingItems()
-    val listState: LazyListState = rememberLazyListState()
 
     LazyColumn(
-        state = listState,
+        state = viewModel.lazyListState,
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
     ) {
@@ -36,7 +34,7 @@ fun ProximityBusinessListView(
             proximityBusinessesPagingItems[index]?.let { pagingItem ->
                 when {
                     pagingItem is ProximityServiceBusinessState -> {
-                        ProximityBusinessCardView(pagingItem)
+                        ProximityBusinessCardView(state = pagingItem, onItemClick = onItemClick)
                     }
                 }
             }

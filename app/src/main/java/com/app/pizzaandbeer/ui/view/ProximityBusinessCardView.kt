@@ -1,6 +1,7 @@
 package com.app.pizzaandbeer.ui.view
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -29,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.app.pizzaandbeer.R
+import com.app.pizzaandbeer.core.AppTheme
 import com.app.pizzaandbeer.ui.model.ProximityServiceBusinessState
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -36,12 +38,14 @@ import com.app.pizzaandbeer.ui.model.ProximityServiceBusinessState
 fun ProximityBusinessCardView(
     state: ProximityServiceBusinessState,
     modifier: Modifier = Modifier,
+    onItemClick: () -> Unit,
 ) {
     Card(
         modifier =
             modifier
                 .padding(horizontal = 16.dp, vertical = 8.dp)
-                .clip(RoundedCornerShape(8.dp)),
+                .clip(RoundedCornerShape(8.dp))
+                .clickable { onItemClick.invoke() },
     ) {
         val imagePainter =
             state.imageUrl?.let {
@@ -139,7 +143,7 @@ fun ProximityBusinessCardView(
 @Preview
 @Composable
 fun PreviewProximityBusinessCardView() {
-    MaterialTheme {
+    AppTheme {
         Surface {
             ProximityBusinessCardView(
                 state =
@@ -153,6 +157,7 @@ fun PreviewProximityBusinessCardView() {
                         price = "$$",
                         displayAddress = listOf("Murphy avenue", "sunnyvale"),
                     ),
+                onItemClick = {},
             )
         }
     }

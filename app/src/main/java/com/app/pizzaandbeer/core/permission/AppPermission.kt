@@ -2,7 +2,10 @@ package com.app.pizzaandbeer.core.permission
 
 import android.Manifest
 
-internal enum class AppPermission(val permissionValue: String) {
+/**
+ * List of Permission the App Supports
+ */
+enum class AppPermission(val permissionValue: String) {
     PERMISSION_ACCESS_COARSE_LOCATION(Manifest.permission.ACCESS_COARSE_LOCATION),
     PERMISSION_ACCESS_FINE_LOCATION(Manifest.permission.ACCESS_FINE_LOCATION),
 }

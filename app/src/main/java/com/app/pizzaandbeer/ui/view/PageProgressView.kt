@@ -18,6 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.app.pizzaandbeer.R
+import com.app.pizzaandbeer.core.AppTheme
 
 @Composable
 fun PageProgressView(
@@ -47,7 +48,7 @@ fun PageProgressView(
 @Preview
 @Composable
 fun PreviewPageProgressView() {
-    MaterialTheme {
+    AppTheme {
         Surface {
             PageProgressView()
         }

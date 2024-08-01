@@ -45,7 +45,6 @@ class ProximityServiceBusinessUseCase
                             }
 
                             responsePizza.isSuccess && responseBeer.isSuccess -> {
-
                                 // both succeed
                                 combine(responseBeer.getOrNull(), responsePizza.getOrNull())
                             }

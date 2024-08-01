@@ -101,7 +101,6 @@ class ProximityServiceBusinessUseCaseTest {
             val result = proximityServiceBusinessUseCase.invoke(mockConfig)
 
             assertThat(result.isSuccess).isTrue()
-            // header +
             assertThat(result.getOrNull()?.size).isEqualTo(3)
         }
 }

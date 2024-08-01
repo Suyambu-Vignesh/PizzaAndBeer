@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.app.pizzaandbeer.R
+import com.app.pizzaandbeer.core.AppTheme
 import com.app.pizzaandbeer.ui.model.ErrorState
 import com.app.pizzaandbeer.ui.model.ErrorType
 
@@ -92,7 +93,7 @@ fun ErrorView(
 @Preview
 @Composable
 fun PreviewClientErrorMessage() {
-    MaterialTheme {
+    AppTheme {
         Surface {
             ErrorView(
                 ErrorState(
@@ -111,7 +112,7 @@ fun PreviewClientErrorMessage() {
 @Preview
 @Composable
 fun PreviewServerErrorMessage() {
-    MaterialTheme {
+    AppTheme {
         Surface {
             ErrorView(
                 ErrorState(
