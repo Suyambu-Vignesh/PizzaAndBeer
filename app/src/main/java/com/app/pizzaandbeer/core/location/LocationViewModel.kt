@@ -6,12 +6,15 @@ import com.app.pizzaandbeer.core.location.internal.FetchingLocationState
 import com.app.pizzaandbeer.core.location.internal.LocationManager
 import com.app.pizzaandbeer.core.location.internal.LocationState
 import com.app.pizzaandbeer.core.permission.internal.PermissionModule
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class LocationViewModel
     @Inject
     constructor(
@@ -33,13 +36,13 @@ class LocationViewModel
         internal val locationState: StateFlow<LocationState> by lazy { locationMutableState }
 
         init {
-            locationManager.startLocationEvent()
+            viewModelScope.launch {
+                locationManager.locationFlow.collect {
+                    locationMutableState.value = it
+                }
+            }
 
             viewModelScope.launch {
-                locationManager.locationFlow.collectLatest {
-                    locationMutableState.tryEmit(it)
-                }
-
                 PermissionModule.permissionResponseFlow.collect {
                     if (it.permissionRequestId == APP_PERMISSION_REQUEST_ID &&
                         it.permissionStatus.values.contains(
@@ -49,6 +52,10 @@ class LocationViewModel
                         locationManager.startLocationEvent()
                     }
                 }
+            }
+
+            viewModelScope.launch {
+                locationManager.startLocationEvent()
             }
         }
 

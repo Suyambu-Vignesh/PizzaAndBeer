@@ -19,4 +19,4 @@ data object FetchingLocationState : LocationState()
 /**
  * State which says has about the current [Location]
  */
-data class LocationInfoState(val location: Location) : LocationState()
+data class LocationInfoState(val lat: Double, val long: Double) : LocationState()

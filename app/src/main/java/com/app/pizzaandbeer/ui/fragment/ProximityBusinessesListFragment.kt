@@ -17,7 +17,7 @@ import com.app.pizzaandbeer.ui.viewmodel.ProximityBusinessesViewModel
 
 class ProximityBusinessesListFragment : Fragment() {
     private val proximityBusinessViewModel: ProximityBusinessesViewModel by activityViewModels()
-    private val locationViewModel: LocationViewModel by viewModels()
+    private val locationViewModel: LocationViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

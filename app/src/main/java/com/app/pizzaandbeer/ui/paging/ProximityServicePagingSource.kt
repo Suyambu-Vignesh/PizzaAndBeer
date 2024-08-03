@@ -9,8 +9,8 @@ import com.app.pizzaandbeer.ui.domain.ProximityServiceBusinessUseCase
 import com.app.pizzaandbeer.ui.model.ProximityServicePagingState
 
 class ProximityServicePagingSource(
-    private val latitude: Int? = null,
-    private val longitude: Int? = null,
+    private val latitude: Double? = null,
+    private val longitude: Double? = null,
     private val proximityServiceBusinessUseCase: ProximityServiceBusinessUseCase,
 ) : PagingSource<ProximityServiceConfig, ProximityServicePagingState>() {
     companion object {
@@ -19,8 +19,8 @@ class ProximityServicePagingSource(
 
     override fun getRefreshKey(state: PagingState<ProximityServiceConfig, ProximityServicePagingState>): ProximityServiceConfig? {
         return ProximityServiceConfig(
-            latitude,
-            longitude,
+            latitude?.toInt(),
+            longitude?.toInt(),
         )
     }
 
@@ -40,8 +40,8 @@ class ProximityServicePagingSource(
 
         currentConfig =
             currentConfig.getNewConfig(
-                latitude,
-                longitude,
+                latitude.toInt(),
+                longitude.toInt(),
             )
 
         return proximityServiceBusinessUseCase(currentConfig).fold(
