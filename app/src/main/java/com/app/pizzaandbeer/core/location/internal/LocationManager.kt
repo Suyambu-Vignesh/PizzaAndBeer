@@ -17,6 +17,7 @@ class LocationManager
 @Inject
 constructor(
     @ApplicationContext private val context: Context,
+    private val permissionModule: PermissionModule
 ) {
     private val sharedLocationFlow: MutableSharedFlow<LocationState> by lazy { MutableSharedFlow<LocationState>(
         replay = 0, extraBufferCapacity = 1
@@ -48,10 +49,10 @@ constructor(
 
     @SuppressLint("MissingPermission")
     internal fun startLocationEvent() {
-        if (PermissionModule.hasPermission(
+        if (permissionModule.hasPermission(
                 context, AppPermission.PERMISSION_ACCESS_COARSE_LOCATION,
             ) ||
-            PermissionModule.hasPermission(
+            permissionModule.hasPermission(
                 context,
                 AppPermission.PERMISSION_ACCESS_FINE_LOCATION,
             )
@@ -78,7 +79,7 @@ constructor(
     }
 
     fun askLocationPermission(requestId: Int) {
-        PermissionModule.askPermission(
+        permissionModule.askPermission(
             context,
             listOf(
                 AppPermission.PERMISSION_ACCESS_COARSE_LOCATION,

@@ -7,10 +7,8 @@ import com.app.pizzaandbeer.core.location.internal.LocationManager
 import com.app.pizzaandbeer.core.location.internal.LocationState
 import com.app.pizzaandbeer.core.permission.internal.PermissionModule
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,6 +17,7 @@ class LocationViewModel
     @Inject
     constructor(
         private val locationManager: LocationManager,
+        private val permissionManager: PermissionModule,
     ) : ViewModel() {
         companion object {
             private const val APP_PERMISSION_REQUEST_ID = 101
@@ -43,7 +42,7 @@ class LocationViewModel
             }
 
             viewModelScope.launch {
-                PermissionModule.permissionResponseFlow.collect {
+                permissionManager.permissionResponseFlow.collect {
                     if (it.permissionRequestId == APP_PERMISSION_REQUEST_ID &&
                         it.permissionStatus.values.contains(
                             true,
